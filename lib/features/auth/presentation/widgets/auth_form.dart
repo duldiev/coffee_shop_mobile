@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/blocs/auth_form_bloc/auth_form_bloc.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/button_with_icon.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/custom_text_field.dart';
@@ -17,12 +19,8 @@ class AuthForm extends StatelessWidget {
       listener: (context, state) {
         log(state.message);
         if (state.isSubmitting) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              content: Text(state.message),
-            ),
-          );
+          log("Logined");
+          context.router.push(const NavRouter());
         }
       },
       child: Column(

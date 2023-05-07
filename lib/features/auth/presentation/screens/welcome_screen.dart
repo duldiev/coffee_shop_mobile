@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/button_with_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,9 @@ class WelcomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ButtonWithIcon(
-                    onPressed: () {},
+                    onPressed: () => context.router.push(
+                      const AuthRoute(),
+                    ),
                     width: double.maxFinite,
                     height: 50,
                     title: "Login",
