@@ -16,14 +16,14 @@ import 'package:coffee_shop_mobile/features/auth/presentation/screens/sign_up_sc
     as _i3;
 import 'package:coffee_shop_mobile/features/auth/presentation/screens/welcome_screen.dart'
     as _i4;
-import 'package:coffee_shop_mobile/features/home/presentation/home_screen.dart'
-    as _i6;
-import 'package:coffee_shop_mobile/features/notification/presentation/notification_screen.dart'
-    as _i7;
-import 'package:coffee_shop_mobile/features/profile/presentation/product_detail.dart'
+import 'package:coffee_shop_mobile/features/home/presentation/screens/home_screen.dart'
     as _i9;
-import 'package:coffee_shop_mobile/features/profile/presentation/profile_screen.dart'
+import 'package:coffee_shop_mobile/features/notification/presentation/notification_screen.dart'
+    as _i6;
+import 'package:coffee_shop_mobile/features/profile/presentation/product_detail.dart'
     as _i8;
+import 'package:coffee_shop_mobile/features/profile/presentation/profile_screen.dart'
+    as _i7;
 import 'package:coffee_shop_mobile/features/splash/splash_screen.dart' as _i2;
 
 abstract class $AppRouter extends _i10.RootStackRouter {
@@ -61,28 +61,28 @@ abstract class $AppRouter extends _i10.RootStackRouter {
         child: const _i5.NavRouter(),
       );
     },
-    HomeRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i6.HomeScreen(),
-      );
-    },
     NotificationRoute.name: (routeData) {
       return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.NotificationScreen(),
+        child: const _i6.NotificationScreen(),
       );
     },
     ProfileRoute.name: (routeData) {
       return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.ProfileScreen(),
+        child: const _i7.ProfileScreen(),
       );
     },
     ProductDetail.name: (routeData) {
       return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.ProductDetail(),
+        child: const _i8.ProductDetail(),
+      );
+    },
+    HomeRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i9.HomeScreen(),
       );
     },
   };
@@ -159,21 +159,7 @@ class NavRouter extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.HomeScreen]
-class HomeRoute extends _i10.PageRouteInfo<void> {
-  const HomeRoute({List<_i10.PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRoute';
-
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i7.NotificationScreen]
+/// [_i6.NotificationScreen]
 class NotificationRoute extends _i10.PageRouteInfo<void> {
   const NotificationRoute({List<_i10.PageRouteInfo>? children})
       : super(
@@ -187,7 +173,7 @@ class NotificationRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.ProfileScreen]
+/// [_i7.ProfileScreen]
 class ProfileRoute extends _i10.PageRouteInfo<void> {
   const ProfileRoute({List<_i10.PageRouteInfo>? children})
       : super(
@@ -201,7 +187,7 @@ class ProfileRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ProductDetail]
+/// [_i8.ProductDetail]
 class ProductDetail extends _i10.PageRouteInfo<void> {
   const ProductDetail({List<_i10.PageRouteInfo>? children})
       : super(
@@ -210,6 +196,20 @@ class ProductDetail extends _i10.PageRouteInfo<void> {
         );
 
   static const String name = 'ProductDetail';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i9.HomeScreen]
+class HomeRoute extends _i10.PageRouteInfo<void> {
+  const HomeRoute({List<_i10.PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
 
   static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/big_text.dart';
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: 5,
                 itemBuilder: (context, index) => _buildListItem(index),
               ),
             ],
@@ -59,9 +61,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return GestureDetector(
       onTap: () => context.router.push(const ProductDetail()),
       child: Container(
-        padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          top: 20,
+          bottom: 20,
+        ),
+        margin: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          bottom: 20,
+        ),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
