@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProductsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() getList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? getList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? getList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(GetList value) getList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(GetList value)? getList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(GetList value)? getList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,34 +69,33 @@ class _$ProductsEventCopyWithImpl<$Res, $Val extends ProductsEvent>
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$GetListCopyWith<$Res> {
+  factory _$$GetListCopyWith(_$GetList value, $Res Function(_$GetList) then) =
+      __$$GetListCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$ProductsEventCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+class __$$GetListCopyWithImpl<$Res>
+    extends _$ProductsEventCopyWithImpl<$Res, _$GetList>
+    implements _$$GetListCopyWith<$Res> {
+  __$$GetListCopyWithImpl(_$GetList _value, $Res Function(_$GetList) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$GetList implements GetList {
+  const _$GetList();
 
   @override
   String toString() {
-    return 'ProductsEvent.started()';
+    return 'ProductsEvent.getList()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType && other is _$GetList);
   }
 
   @override
@@ -105,27 +104,27 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() getList,
   }) {
-    return started();
+    return getList();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? getList,
   }) {
-    return started?.call();
+    return getList?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? getList,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (getList != null) {
+      return getList();
     }
     return orElse();
   }
@@ -133,34 +132,34 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(GetList value) getList,
   }) {
-    return started(this);
+    return getList(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(GetList value)? getList,
   }) {
-    return started?.call(this);
+    return getList?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(GetList value)? getList,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (getList != null) {
+      return getList(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements ProductsEvent {
-  const factory _Started() = _$_Started;
+abstract class GetList implements ProductsEvent {
+  const factory GetList() = _$GetList;
 }
 
 /// @nodoc
@@ -169,24 +168,24 @@ mixin _$ProductsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() loaded,
-    required TResult Function() loadInFailure,
+    required TResult Function(List<ProductEntity> list) loaded,
+    required TResult Function(String message) loadInFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function()? loaded,
-    TResult? Function()? loadInFailure,
+    TResult? Function(List<ProductEntity> list)? loaded,
+    TResult? Function(String message)? loadInFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? loaded,
-    TResult Function()? loadInFailure,
+    TResult Function(List<ProductEntity> list)? loaded,
+    TResult Function(String message)? loadInFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -273,8 +272,8 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() loaded,
-    required TResult Function() loadInFailure,
+    required TResult Function(List<ProductEntity> list) loaded,
+    required TResult Function(String message) loadInFailure,
   }) {
     return initial();
   }
@@ -284,8 +283,8 @@ class _$Initial implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function()? loaded,
-    TResult? Function()? loadInFailure,
+    TResult? Function(List<ProductEntity> list)? loaded,
+    TResult? Function(String message)? loadInFailure,
   }) {
     return initial?.call();
   }
@@ -295,8 +294,8 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? loaded,
-    TResult Function()? loadInFailure,
+    TResult Function(List<ProductEntity> list)? loaded,
+    TResult Function(String message)? loadInFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -387,8 +386,8 @@ class _$LoadInProgress implements LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() loaded,
-    required TResult Function() loadInFailure,
+    required TResult Function(List<ProductEntity> list) loaded,
+    required TResult Function(String message) loadInFailure,
   }) {
     return loadInProgress();
   }
@@ -398,8 +397,8 @@ class _$LoadInProgress implements LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function()? loaded,
-    TResult? Function()? loadInFailure,
+    TResult? Function(List<ProductEntity> list)? loaded,
+    TResult? Function(String message)? loadInFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -409,8 +408,8 @@ class _$LoadInProgress implements LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? loaded,
-    TResult Function()? loadInFailure,
+    TResult Function(List<ProductEntity> list)? loaded,
+    TResult Function(String message)? loadInFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -465,6 +464,8 @@ abstract class LoadInProgress implements ProductsState {
 abstract class _$$LoadedCopyWith<$Res> {
   factory _$$LoadedCopyWith(_$Loaded value, $Res Function(_$Loaded) then) =
       __$$LoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ProductEntity> list});
 }
 
 /// @nodoc
@@ -473,36 +474,66 @@ class __$$LoadedCopyWithImpl<$Res>
     implements _$$LoadedCopyWith<$Res> {
   __$$LoadedCopyWithImpl(_$Loaded _value, $Res Function(_$Loaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = null,
+  }) {
+    return _then(_$Loaded(
+      null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntity>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$Loaded implements Loaded {
-  const _$Loaded();
+  const _$Loaded(final List<ProductEntity> list) : _list = list;
+
+  final List<ProductEntity> _list;
+  @override
+  List<ProductEntity> get list {
+    if (_list is EqualUnmodifiableListView) return _list;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
 
   @override
   String toString() {
-    return 'ProductsState.loaded()';
+    return 'ProductsState.loaded(list: $list)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loaded);
+        (other.runtimeType == runtimeType &&
+            other is _$Loaded &&
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedCopyWith<_$Loaded> get copyWith =>
+      __$$LoadedCopyWithImpl<_$Loaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() loaded,
-    required TResult Function() loadInFailure,
+    required TResult Function(List<ProductEntity> list) loaded,
+    required TResult Function(String message) loadInFailure,
   }) {
-    return loaded();
+    return loaded(list);
   }
 
   @override
@@ -510,10 +541,10 @@ class _$Loaded implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function()? loaded,
-    TResult? Function()? loadInFailure,
+    TResult? Function(List<ProductEntity> list)? loaded,
+    TResult? Function(String message)? loadInFailure,
   }) {
-    return loaded?.call();
+    return loaded?.call(list);
   }
 
   @override
@@ -521,12 +552,12 @@ class _$Loaded implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? loaded,
-    TResult Function()? loadInFailure,
+    TResult Function(List<ProductEntity> list)? loaded,
+    TResult Function(String message)? loadInFailure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(list);
     }
     return orElse();
   }
@@ -570,7 +601,12 @@ class _$Loaded implements Loaded {
 }
 
 abstract class Loaded implements ProductsState {
-  const factory Loaded() = _$Loaded;
+  const factory Loaded(final List<ProductEntity> list) = _$Loaded;
+
+  List<ProductEntity> get list;
+  @JsonKey(ignore: true)
+  _$$LoadedCopyWith<_$Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -578,6 +614,8 @@ abstract class _$$LoadInFailureCopyWith<$Res> {
   factory _$$LoadInFailureCopyWith(
           _$LoadInFailure value, $Res Function(_$LoadInFailure) then) =
       __$$LoadInFailureCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -587,36 +625,60 @@ class __$$LoadInFailureCopyWithImpl<$Res>
   __$$LoadInFailureCopyWithImpl(
       _$LoadInFailure _value, $Res Function(_$LoadInFailure) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$LoadInFailure(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadInFailure implements LoadInFailure {
-  const _$LoadInFailure();
+  const _$LoadInFailure(this.message);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'ProductsState.loadInFailure()';
+    return 'ProductsState.loadInFailure(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadInFailure);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadInFailure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadInFailureCopyWith<_$LoadInFailure> get copyWith =>
+      __$$LoadInFailureCopyWithImpl<_$LoadInFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function() loaded,
-    required TResult Function() loadInFailure,
+    required TResult Function(List<ProductEntity> list) loaded,
+    required TResult Function(String message) loadInFailure,
   }) {
-    return loadInFailure();
+    return loadInFailure(message);
   }
 
   @override
@@ -624,10 +686,10 @@ class _$LoadInFailure implements LoadInFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function()? loaded,
-    TResult? Function()? loadInFailure,
+    TResult? Function(List<ProductEntity> list)? loaded,
+    TResult? Function(String message)? loadInFailure,
   }) {
-    return loadInFailure?.call();
+    return loadInFailure?.call(message);
   }
 
   @override
@@ -635,12 +697,12 @@ class _$LoadInFailure implements LoadInFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function()? loaded,
-    TResult Function()? loadInFailure,
+    TResult Function(List<ProductEntity> list)? loaded,
+    TResult Function(String message)? loadInFailure,
     required TResult orElse(),
   }) {
     if (loadInFailure != null) {
-      return loadInFailure();
+      return loadInFailure(message);
     }
     return orElse();
   }
@@ -684,5 +746,10 @@ class _$LoadInFailure implements LoadInFailure {
 }
 
 abstract class LoadInFailure implements ProductsState {
-  const factory LoadInFailure() = _$LoadInFailure;
+  const factory LoadInFailure(final String message) = _$LoadInFailure;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$LoadInFailureCopyWith<_$LoadInFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

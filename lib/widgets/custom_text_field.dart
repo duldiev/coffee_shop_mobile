@@ -9,10 +9,8 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: hintText,
-        focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey)
-        ),
-
+        focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey)),
       ),
     );
   }

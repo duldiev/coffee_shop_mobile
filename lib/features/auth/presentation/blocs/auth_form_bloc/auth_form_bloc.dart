@@ -1,7 +1,9 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
-import 'package:coffee_shop_mobile/features/auth/domain/usecase/auth_user_case.dart';
+import 'package:coffee_shop_mobile/core/helpers/urls.dart';
+import 'package:coffee_shop_mobile/core/injectoin/injection.dart';
+import 'package:coffee_shop_mobile/core/services/api_client.dart';
+import 'package:coffee_shop_mobile/features/auth/domain/repository/I_auth_repository.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -12,29 +14,25 @@ part 'auth_form_bloc.freezed.dart';
 
 @injectable
 class AuthFormBloc extends Bloc<AuthFormEvent, AuthFormState> {
-  AuthFormBloc(this._authUserCase) : super(AuthFormState.initial()) {
-    on<EmailChanged>(
-      (event, emit) => changeEmailAddress(event, emit),
-    );
-    on<PasswordChanged>(
-      (event, emit) => changePassword(event, emit),
-    );
-    on<SignInWithEmailAndPassword>(
-      (event, emit) => signInWithEmailPassword(event, emit),
-    );
+  AuthFormBloc(
+    this.repository,
+    this.client,
+  ) : super(AuthFormState.initial()) {
+    on<EmailChanged>(changeEmailAddress);
+    on<PasswordChanged>(changePassword);
+    on<SignInWithEmailAndPassword>(signInWithEmailPassword);
   }
 
-  final AuthUserCase _authUserCase;
+  final IAuthRepository repository;
+  final ApiClient client;
 
   Future<void> signInWithEmailPassword(
     SignInWithEmailAndPassword event,
     Emitter<AuthFormState> emit,
   ) async {
-    final result = await _authUserCase(
-      AuthUserParams(
-        email: state.emailAddress,
-        password: state.password,
-      ),
+    final result = await repository.signIn(
+      state.emailAddress,
+      state.password,
     );
 
     result.fold(
@@ -43,14 +41,26 @@ class AuthFormBloc extends Bloc<AuthFormEvent, AuthFormState> {
           isSubmitting: false,
           showErrorMessages: AutovalidateMode.onUserInteraction,
           message: f.exception.message,
+          isSuccess: false,
         ),
       ),
-      (r) => emit(
-        state.copyWith(
-          isSubmitting: true,
-          message: "Success",
-        ),
-      ),
+      (r) {
+        getIt<ApiClient>().client.options = BaseOptions(
+          baseUrl: URL.baseUrl,
+          responseType: ResponseType.json,
+          contentType: 'application/json',
+          headers: {
+            "Authorization": 'Bearer ${r.access}',
+          },
+        );
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: "Success",
+            isSuccess: true,
+          ),
+        );
+      },
     );
 
     emit(state.copyWith(

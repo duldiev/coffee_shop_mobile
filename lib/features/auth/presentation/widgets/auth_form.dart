@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/blocs/auth_form_bloc/auth_form_bloc.dart';
@@ -17,9 +15,7 @@ class AuthForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthFormBloc, AuthFormState>(
       listener: (context, state) {
-        log(state.message);
-        if (state.isSubmitting) {
-          log("Logined");
+        if (state.isSuccess) {
           context.router.push(const NavRouter());
         }
       },
@@ -31,7 +27,7 @@ class AuthForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => context.router.pop(),
                 icon: const Icon(Icons.arrow_back_ios),
               ),
             ],

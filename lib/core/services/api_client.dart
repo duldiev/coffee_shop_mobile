@@ -1,14 +1,30 @@
+import 'package:coffee_shop_mobile/core/helpers/storage_keys.dart';
+import 'package:coffee_shop_mobile/core/helpers/urls.dart';
+import 'package:coffee_shop_mobile/core/services/secure_storage_service.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class ApiClient {
-  ApiClient(this._client) {
-    _client.options = BaseOptions(
-      baseUrl: baseUrl,
+  ApiClient(this.client, this.storage) {
+    updateBaseOptions();
+    updateLogs();
+  }
+
+  final Dio client;
+  final SecureStorageService storage;
+
+  updateBaseOptions() async {
+    final token = await storage.read(StorageKeys.token);
+    client.options = BaseOptions(
+      baseUrl: URL.baseUrl,
       responseType: ResponseType.json,
+      headers: {"Authorization": 'Bearer ${token.getOrElse(() => 'NULL')}'},
     );
-    _client.interceptors.add(
+  }
+
+  updateLogs() {
+    client.interceptors.add(
       LogInterceptor(
         responseBody: true,
         requestBody: true,
@@ -16,9 +32,6 @@ class ApiClient {
       ),
     );
   }
-
-  final Dio _client;
-  final String baseUrl = 'http://127.0.0.1:8000';
 
   _logEvent(Object? object) {
     var pattern = RegExp('.{1,800}');
@@ -34,7 +47,7 @@ class ApiClient {
     CancelToken? cancelToken,
     Options? options,
   }) =>
-      _client.get(
+      client.get(
         url,
         queryParameters: params,
         cancelToken: cancelToken,
@@ -47,7 +60,7 @@ class ApiClient {
     dynamic parametres,
     Options? options,
   }) =>
-      _client.post(
+      client.post(
         url,
         data: body,
         queryParameters: parametres,
@@ -59,7 +72,7 @@ class ApiClient {
     dynamic body,
     Options? options,
   }) =>
-      _client.put(
+      client.put(
         url,
         data: body,
         options: options,
@@ -71,7 +84,7 @@ class ApiClient {
     Options? options,
     Map<String, dynamic>? params,
   }) =>
-      _client.delete(
+      client.delete(
         url,
         data: body,
         options: options,
@@ -84,7 +97,7 @@ class ApiClient {
     Options? options,
     Function(int, int)? onSendProgress,
   }) =>
-      _client.patch(
+      client.patch(
         url,
         data: body,
         options: options,

@@ -8,8 +8,8 @@ class AppRouter extends $AppRouter {
 
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: SplashRoute.page),
-    AutoRoute(page: WelcomeRoute.page, initial: true),
+    AutoRoute(page: SplashRoute.page, initial: true),
+    AutoRoute(page: WelcomeRoute.page),
     AutoRoute(page: AuthRoute.page),
     AutoRoute(page: SignUpRoute.page),
     AutoRoute(
@@ -21,5 +21,6 @@ class AppRouter extends $AppRouter {
       ],
     ),
     AutoRoute(page: ProductDetail.page),
+    AutoRoute(page: CartRoute.page),
   ];
 }

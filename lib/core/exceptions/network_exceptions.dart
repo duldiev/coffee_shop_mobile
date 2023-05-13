@@ -12,6 +12,10 @@ class NetworkExceptions implements Exception {
         message = 'Ошибка подключения к интернету';
         title = 'No Internet';
         break;
+      case 401:
+        message = 'Not authenticated';
+        title = 'Not authenticated';
+        break;
       case 500:
         message = 'Внутренняя ошибка сервера';
         title = 'Внутренняя ошибка сервера';

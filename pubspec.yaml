@@ -9,10 +9,11 @@ environment:
   sdk: '>=2.19.6 <3.0.0'
 
 dependencies:
-  auto_route: ^6.0.0+1
+  auto_route: ^7.1.0
+  badges: ^3.1.1
   bloc: ^8.1.1
   cached_network_image: ^3.2.1
-  connectivity_plus: ^3.0.2
+  connectivity_plus: ^4.0.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.1.1
@@ -20,6 +21,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutter_secure_storage: ^8.0.0
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
   injectable: ^2.1.0
@@ -27,10 +29,11 @@ dependencies:
   json_annotation: ^4.8.0
   keyboard_actions: ^4.2.0
   mask_text_input_formatter: ^2.4.0
+  responsive_sizer: ^3.1.1
   shared_preferences: ^2.1.0
 
 dev_dependencies:
-  auto_route_generator: ^6.0.0
+  auto_route_generator: ^7.0.0
   build_runner: ^2.3.3
   flutter_lints: ^2.0.0
   flutter_test:

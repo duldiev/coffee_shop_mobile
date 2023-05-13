@@ -8,6 +8,7 @@ class AuthFormState with _$AuthFormState {
     required bool isSubmitting,
     required AutovalidateMode? showErrorMessages,
     required String message,
+    required bool isSuccess,
   }) = _AuthFormState;
 
   const AuthFormState._();
@@ -18,5 +19,6 @@ class AuthFormState with _$AuthFormState {
         isSubmitting: false,
         showErrorMessages: AutovalidateMode.disabled,
         message: "",
+        isSuccess: false,
       );
 }

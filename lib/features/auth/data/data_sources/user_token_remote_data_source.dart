@@ -1,4 +1,4 @@
-import 'package:coffee_shop_mobile/core/constants/urls.dart';
+import 'package:coffee_shop_mobile/core/helpers/urls.dart';
 import 'package:coffee_shop_mobile/core/exceptions/failure.dart';
 import 'package:coffee_shop_mobile/core/services/base_repository.dart';
 import 'package:coffee_shop_mobile/features/auth/data/model/auth_response_model.dart';

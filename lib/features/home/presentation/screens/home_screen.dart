@@ -1,37 +1,27 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:coffee_shop_mobile/common/widgets/app_bar_widget/app_bar_widget.dart';
+import 'package:coffee_shop_mobile/core/helpers/get_image.dart';
 import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/big_text.dart';
+import 'package:coffee_shop_mobile/features/home/domain/entity/product/product_entity.dart';
+import 'package:coffee_shop_mobile/features/home/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:coffee_shop_mobile/widgets/search_bar.dart';
 import 'package:coffee_shop_mobile/widgets/small_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  var description =
-      "Лавандовый раф - это нежный кофейный напиток с мягким сливочным вкусом с добавлением фруктово-ягодного экстракта (эссенции), который не содержит в себе сахара, а является природным подсластителем со вкусом лаванды. Лавандовые нотки придают ему особый неповторимый вкус! Также в нашем ассортименте есть большой выбор растительного молока, который мы можем заменить по вашему пожеланию.";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Coffee"),
-        backgroundColor: Colors.white,
-        titleTextStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-        ),
-        scrolledUnderElevation: 0,
-        elevation: 0.4,
+      appBar: const AppBarWidget(
+        title: 'Coffee',
+        hideBackButton: true,
       ),
       body: Container(
         clipBehavior: Clip.none,
@@ -41,14 +31,30 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: const SearchBar(),
+                child: const CustomSearchBar(),
               ),
               const SizedBox(height: 30),
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index) => _buildListItem(index),
+              BlocBuilder<ProductsBloc, ProductsState>(
+                builder: (context, state) {
+                  return state.when(
+                    initial: () => const SizedBox(),
+                    loadInProgress: () => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    loaded: (list) => ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (context, index) => _buildListItem(
+                        list[index],
+                        context,
+                      ),
+                    ),
+                    loadInFailure: (message) => Center(
+                      child: Text(message),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -57,9 +63,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildListItem(int index) {
+  Widget _buildListItem(ProductEntity product, BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router.push(const ProductDetail()),
+      onTap: () => context.router.push(
+        ProductDetail(
+          product: product,
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.only(
           left: 20,
@@ -88,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               flex: 1,
-              child: Image.network(
-                "https://cachizer1.2gis.com/market/5e3a84f2-57fb-4b8b-abf0-93cfd0841c63.png?w=1088",
+              child: Image.file(
+                File(GetImage.get(product.image)),
               ),
             ),
             const SizedBox(width: 20),
@@ -101,12 +111,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const BigText(text: "Latte"),
+                    BigText(text: product.name),
                     const SizedBox(
                       height: 10,
                     ),
                     SmallText(
-                      text: description,
+                      text: product.description,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
@@ -122,9 +132,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.black54,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
-                        "950T",
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      child: Text(
+                        '\$${product.price}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ],

@@ -1,4 +1,3 @@
-import 'package:coffee_shop_mobile/core/extensions/sized_context.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/small_text.dart';
 import 'package:flutter/material.dart';
 

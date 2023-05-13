@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:coffee_shop_mobile/core/exceptions/failure.dart';
 import 'package:coffee_shop_mobile/core/injectoin/injection.dart';
 import 'package:coffee_shop_mobile/core/services/api_client.dart';
@@ -10,7 +9,7 @@ import 'package:dio/dio.dart';
 enum RestMethod { get, post, put, delete, patch }
 
 abstract class BaseRepository {
-  final NetworkInfo networkInfo = getIt<NetworkInfo>();
+  final INetworkInfo networkInfo = getIt<INetworkInfo>();
   final ApiClient restClientService = getIt<ApiClient>();
 
   Future<Either<Failure, dynamic>> call(

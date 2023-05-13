@@ -36,7 +36,7 @@ class SearchBar extends StatelessWidget {
             flex: 8,
             child: Container(
               width: 180,
-              margin: EdgeInsets.only(left: 10),
+              margin: const EdgeInsets.only(left: 10),
               child: const TextField(
                 decoration: InputDecoration(
                   border: InputBorder.none,

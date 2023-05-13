@@ -490,6 +490,7 @@ mixin _$AuthFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   AutovalidateMode? get showErrorMessages => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  bool get isSuccess => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthFormStateCopyWith<AuthFormState> get copyWith =>
@@ -507,7 +508,8 @@ abstract class $AuthFormStateCopyWith<$Res> {
       String password,
       bool isSubmitting,
       AutovalidateMode? showErrorMessages,
-      String message});
+      String message,
+      bool isSuccess});
 }
 
 /// @nodoc
@@ -528,6 +530,7 @@ class _$AuthFormStateCopyWithImpl<$Res, $Val extends AuthFormState>
     Object? isSubmitting = null,
     Object? showErrorMessages = freezed,
     Object? message = null,
+    Object? isSuccess = null,
   }) {
     return _then(_value.copyWith(
       emailAddress: null == emailAddress
@@ -550,6 +553,10 @@ class _$AuthFormStateCopyWithImpl<$Res, $Val extends AuthFormState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      isSuccess: null == isSuccess
+          ? _value.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -567,7 +574,8 @@ abstract class _$$_AuthFormStateCopyWith<$Res>
       String password,
       bool isSubmitting,
       AutovalidateMode? showErrorMessages,
-      String message});
+      String message,
+      bool isSuccess});
 }
 
 /// @nodoc
@@ -586,6 +594,7 @@ class __$$_AuthFormStateCopyWithImpl<$Res>
     Object? isSubmitting = null,
     Object? showErrorMessages = freezed,
     Object? message = null,
+    Object? isSuccess = null,
   }) {
     return _then(_$_AuthFormState(
       emailAddress: null == emailAddress
@@ -608,6 +617,10 @@ class __$$_AuthFormStateCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      isSuccess: null == isSuccess
+          ? _value.isSuccess
+          : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -620,7 +633,8 @@ class _$_AuthFormState extends _AuthFormState {
       required this.password,
       required this.isSubmitting,
       required this.showErrorMessages,
-      required this.message})
+      required this.message,
+      required this.isSuccess})
       : super._();
 
   @override
@@ -633,10 +647,12 @@ class _$_AuthFormState extends _AuthFormState {
   final AutovalidateMode? showErrorMessages;
   @override
   final String message;
+  @override
+  final bool isSuccess;
 
   @override
   String toString() {
-    return 'AuthFormState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages, message: $message)';
+    return 'AuthFormState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, showErrorMessages: $showErrorMessages, message: $message, isSuccess: $isSuccess)';
   }
 
   @override
@@ -652,12 +668,14 @@ class _$_AuthFormState extends _AuthFormState {
                 other.isSubmitting == isSubmitting) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 other.showErrorMessages == showErrorMessages) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.isSuccess, isSuccess) ||
+                other.isSuccess == isSuccess));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, emailAddress, password,
-      isSubmitting, showErrorMessages, message);
+      isSubmitting, showErrorMessages, message, isSuccess);
 
   @JsonKey(ignore: true)
   @override
@@ -672,7 +690,8 @@ abstract class _AuthFormState extends AuthFormState {
       required final String password,
       required final bool isSubmitting,
       required final AutovalidateMode? showErrorMessages,
-      required final String message}) = _$_AuthFormState;
+      required final String message,
+      required final bool isSuccess}) = _$_AuthFormState;
   _AuthFormState._() : super._();
 
   @override
@@ -685,6 +704,8 @@ abstract class _AuthFormState extends AuthFormState {
   AutovalidateMode? get showErrorMessages;
   @override
   String get message;
+  @override
+  bool get isSuccess;
   @override
   @JsonKey(ignore: true)
   _$$_AuthFormStateCopyWith<_$_AuthFormState> get copyWith =>

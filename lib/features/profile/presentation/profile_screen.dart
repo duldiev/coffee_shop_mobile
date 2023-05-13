@@ -1,29 +1,21 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:coffee_shop_mobile/common/widgets/app_bar_widget/app_bar_widget.dart';
+import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
+import 'package:coffee_shop_mobile/features/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import 'package:coffee_shop_mobile/widgets/clickable_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
-        backgroundColor: Colors.white,
-        titleTextStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-        ),
-        scrolledUnderElevation: 0,
-        elevation: 0.4,
+      appBar: const AppBarWidget(
+        title: 'Profile',
+        hideBackButton: true,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -36,29 +28,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         child: Column(
-          children: const [
-            SizedBox(height: 30),
-            ClickableItem(
+          children: [
+            const SizedBox(height: 30),
+            const SmalLine(),
+            const ClickableItem(
               title: "Raiymbek Duldiyev",
               icon: Icons.person,
             ),
-            SizedBox(height: 30),
+            const SmalLine(),
+            const SizedBox(height: 30),
+            const SmalLine(),
             ClickableItem(
+              title: "Cart",
+              icon: Icons.shopping_cart,
+              onTap: () => context.router.push(
+                const CartRoute(),
+              ),
+            ),
+            const SmalLine(),
+            const ClickableItem(
               title: "Current orders",
               icon: Icons.incomplete_circle,
             ),
-            ClickableItem(
+            const SmalLine(),
+            const ClickableItem(
               title: "History",
               icon: Icons.list_alt,
             ),
-            SizedBox(height: 30),
+            const SmalLine(),
+            const SizedBox(height: 30),
+            const SmalLine(),
             ClickableItem(
               title: "Log out",
               icon: Icons.logout,
+              onTap: () {
+                context.read<AuthBloc>().add(
+                      const SignedOut(),
+                    );
+                context.router.popUntilRoot();
+                context.router.replace(const WelcomeRoute());
+              },
             ),
+            const SmalLine(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class SmalLine extends StatelessWidget {
+  const SmalLine({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Divider(
+      thickness: 0.8,
+      height: 0,
     );
   }
 }

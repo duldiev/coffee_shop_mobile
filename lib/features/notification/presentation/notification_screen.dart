@@ -1,31 +1,18 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:coffee_shop_mobile/common/widgets/app_bar_widget/app_bar_widget.dart';
 import 'package:coffee_shop_mobile/widgets/big_text.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class NotificationScreen extends StatefulWidget {
+class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
   @override
-  State<NotificationScreen> createState() => _NotificationScreenState();
-}
-
-class _NotificationScreenState extends State<NotificationScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Inbox",
-        ),
-        backgroundColor: Colors.white,
-        titleTextStyle: const TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-        ),
-        scrolledUnderElevation: 0,
-        elevation: 0.4,
+      appBar: const AppBarWidget(
+        title: "Inbox",
+        hideBackButton: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -35,8 +22,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
                   border: Border.symmetric(horizontal: BorderSide(width: 0.1))),
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   Expanded(
                     flex: 2,
                     child: Icon(
