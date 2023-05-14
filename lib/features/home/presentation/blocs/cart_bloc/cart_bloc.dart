@@ -13,6 +13,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc(this.repository) : super(const CartState.initial()) {
     on<GetCart>(getCart);
     on<RemoveItem>(removeItem);
+    on<Checkout>(checkout);
   }
 
   final IProductRepository repository;
@@ -27,7 +28,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
     result.fold(
       (l) => emit(CartState.loadInFailure(l.exception.message)),
-      (r) => emit(CartState.loaded(r)),
+      (r) => emit(
+        r.productList.isNotEmpty
+            ? CartState.loaded(r)
+            : const CartState.initial(),
+      ),
     );
   }
 
@@ -38,6 +43,18 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final result = await repository.removeFromCart(
       event.productId,
     );
+
+    result.fold(
+      (_) {},
+      (r) => add(const GetCart()),
+    );
+  }
+
+  Future<void> checkout(
+    Checkout event,
+    Emitter<CartState> emit,
+  ) async {
+    final result = await repository.checkoutItems();
 
     result.fold(
       (_) {},

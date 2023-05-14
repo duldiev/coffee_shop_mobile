@@ -6,4 +6,6 @@ class CartEvent with _$CartEvent {
   const factory CartEvent.removeItem(
     int productId,
   ) = RemoveItem;
+
+  const factory CartEvent.checkout() = Checkout;
 }

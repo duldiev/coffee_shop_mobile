@@ -204,24 +204,28 @@ class CartBadgeIcon extends StatefulWidget {
 class _CartBadgeIconState extends State<CartBadgeIcon> {
   int cartLength = 0;
 
+  Future<bool> updateCart() async {
+    context.read<CartBloc>().add(const GetCart());
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CartBloc, CartState>(
       listener: (context, state) {
         if (state is Loaded && state.cart.productList.isNotEmpty) {
-          setState(() {
-            cartLength = 0;
-            for (var i = 0; i < state.cart.productList.length; i++) {
-              cartLength += state.cart.productList[i].amount;
-            }
-          });
+          int sum = 0;
+          for (var i = 0; i < state.cart.productList.length; i++) {
+            sum += state.cart.productList[i].amount;
+          }
+          setState(() => cartLength = sum);
         }
       },
       builder: (context, state) {
         return state is Loaded && state.cart.productList.isNotEmpty
             ? GestureDetector(
                 onTap: () => context.router.push(
-                  const CartRoute(),
+                  CartRoute(callback: updateCart),
                 ),
                 child: badges.Badge(
                   badgeContent: Text(
@@ -238,7 +242,7 @@ class _CartBadgeIconState extends State<CartBadgeIcon> {
               )
             : GestureDetector(
                 onTap: () => context.router.push(
-                  const CartRoute(),
+                  CartRoute(),
                 ),
                 child: const Icon(
                   Icons.shopping_cart_outlined,
@@ -261,7 +265,11 @@ class BottomNavContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddToCartBloc, AddToCartState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state.loaded) {
+          context.read<CartBloc>().add(const GetCart());
+        }
+      },
       builder: (context, state) {
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -283,7 +291,7 @@ class BottomNavContent extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 10,
                     blurRadius: 10,
-                    offset: const Offset(0, 0), // changes position of shadow
+                    offset: const Offset(0, 0),
                   ),
                 ],
               ),
@@ -328,7 +336,6 @@ class BottomNavContent extends StatelessWidget {
                       context.read<AddToCartBloc>().add(
                             AddToCart(productId),
                           );
-                      context.read<CartBloc>().add(const GetCart());
                     },
                     height: 50,
                     width: 50,

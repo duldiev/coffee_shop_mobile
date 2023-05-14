@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 abstract class ClientModules {
   @lazySingleton
   BaseOptions get options => BaseOptions(
-        baseUrl: URL.baseUrl,
+        baseUrl: URLs.baseUrl,
         responseType: ResponseType.json,
       );
 }

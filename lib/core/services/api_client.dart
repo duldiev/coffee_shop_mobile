@@ -17,7 +17,7 @@ class ApiClient {
   updateBaseOptions() async {
     final token = await storage.read(StorageKeys.token);
     client.options = BaseOptions(
-      baseUrl: URL.baseUrl,
+      baseUrl: URLs.baseUrl,
       responseType: ResponseType.json,
       headers: {"Authorization": 'Bearer ${token.getOrElse(() => 'NULL')}'},
     );

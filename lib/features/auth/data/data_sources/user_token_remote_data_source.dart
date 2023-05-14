@@ -20,7 +20,7 @@ class UserRemoteDataSource extends BaseRepository
     String email,
     String password,
   ) async {
-    final result = call(RestMethod.post, URL.auth, body: {
+    final result = call(RestMethod.post, URLs.auth, body: {
       "username": email,
       "password": password,
     });

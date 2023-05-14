@@ -11,5 +11,5 @@ class AppColors {
   static Color light = const Color(0xFFD9D9D9);
   static Color danger = const Color.fromARGB(255, 159, 8, 8);
   static Color warning = const Color(0xFFFFD966);
-  static Color success = const Color(0xFF03C988);
+  static Color success = const Color.fromARGB(255, 21, 188, 66);
 }

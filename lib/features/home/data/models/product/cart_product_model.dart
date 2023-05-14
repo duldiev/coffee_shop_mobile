@@ -3,6 +3,7 @@ import 'package:coffee_shop_mobile/features/home/domain/entity/product/cart_prod
 class CartProductModel extends CartProductEntity {
   const CartProductModel({
     required super.id,
+    required super.productId,
     required super.name,
     required super.price,
     required super.amount,
@@ -12,7 +13,8 @@ class CartProductModel extends CartProductEntity {
     Map<String, dynamic> json,
   ) =>
       CartProductModel(
-        id: json['product'] as int,
+        id: json['id'] as int,
+        productId: json['product'] as int,
         name: json['product_name'] as String,
         price: json['product_price'] as int,
         amount: json['count'] as int,

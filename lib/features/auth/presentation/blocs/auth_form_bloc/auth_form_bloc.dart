@@ -46,7 +46,7 @@ class AuthFormBloc extends Bloc<AuthFormEvent, AuthFormState> {
       ),
       (r) {
         getIt<ApiClient>().client.options = BaseOptions(
-          baseUrl: URL.baseUrl,
+          baseUrl: URLs.baseUrl,
           responseType: ResponseType.json,
           contentType: 'application/json',
           headers: {

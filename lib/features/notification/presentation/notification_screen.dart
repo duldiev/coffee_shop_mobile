@@ -21,7 +21,10 @@ class NotificationScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
-                  border: Border.symmetric(horizontal: BorderSide(width: 0.1))),
+                border: Border.symmetric(
+                  horizontal: BorderSide(width: 0.1),
+                ),
+              ),
               child: const Row(
                 children: [
                   Expanded(

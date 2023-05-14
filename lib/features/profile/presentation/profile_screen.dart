@@ -29,6 +29,8 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
+            const SizedBox(height: 1),
+            const SmalLine(),
             const SizedBox(height: 30),
             const SmalLine(),
             const ClickableItem(
@@ -42,13 +44,14 @@ class ProfileScreen extends StatelessWidget {
               title: "Cart",
               icon: Icons.shopping_cart,
               onTap: () => context.router.push(
-                const CartRoute(),
+                CartRoute(),
               ),
             ),
             const SmalLine(),
-            const ClickableItem(
+            ClickableItem(
               title: "Current orders",
               icon: Icons.incomplete_circle,
+              onTap: () => context.router.push(const OrderRoute()),
             ),
             const SmalLine(),
             const ClickableItem(
@@ -84,9 +87,10 @@ class SmalLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Divider(
-      thickness: 0.8,
-      height: 0,
+    return Container(
+      height: 0.1,
+      width: double.maxFinite,
+      color: const Color(0xFF000000),
     );
   }
 }

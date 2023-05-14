@@ -2,6 +2,7 @@ import 'package:coffee_shop_mobile/core/services/network_info.dart';
 import 'package:coffee_shop_mobile/features/home/data/data_sources/product_remote_data_source.dart';
 import 'package:coffee_shop_mobile/features/home/data/models/product/product_model.dart';
 import 'package:coffee_shop_mobile/features/home/domain/entity/cart/cart_entity.dart';
+import 'package:coffee_shop_mobile/features/home/domain/entity/product/order_product_entity.dart';
 import 'package:coffee_shop_mobile/features/home/domain/entity/product/product_entity.dart';
 import 'package:coffee_shop_mobile/core/exceptions/failure.dart';
 import 'package:coffee_shop_mobile/features/home/domain/repository/i_product_repository.dart';
@@ -61,6 +62,24 @@ class ProductRepository implements IProductRepository {
     final result = await remoteDataSource.removeFromCart(
       productId,
     );
+    return result.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<Failure, List<OrderProductEntity>>> getOrders() async {
+    final result = await remoteDataSource.getOrders();
+    return result.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<Failure, Unit>> checkoutItems() async {
+    final result = await remoteDataSource.checkoutItems();
     return result.fold(
       (l) => Left(l),
       (r) => Right(r),
