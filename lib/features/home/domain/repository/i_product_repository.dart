@@ -12,4 +12,8 @@ abstract class IProductRepository {
     int count,
     int productId,
   );
+
+  Future<Either<Failure, Unit>> removeFromCart(
+    int productId,
+  );
 }

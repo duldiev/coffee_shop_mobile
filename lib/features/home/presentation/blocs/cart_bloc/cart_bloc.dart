@@ -12,6 +12,7 @@ part 'cart_bloc.freezed.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc(this.repository) : super(const CartState.initial()) {
     on<GetCart>(getCart);
+    on<RemoveItem>(removeItem);
   }
 
   final IProductRepository repository;
@@ -27,6 +28,20 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     result.fold(
       (l) => emit(CartState.loadInFailure(l.exception.message)),
       (r) => emit(CartState.loaded(r)),
+    );
+  }
+
+  Future<void> removeItem(
+    RemoveItem event,
+    Emitter<CartState> emit,
+  ) async {
+    final result = await repository.removeFromCart(
+      event.productId,
+    );
+
+    result.fold(
+      (_) {},
+      (r) => add(const GetCart()),
     );
   }
 }

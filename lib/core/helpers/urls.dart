@@ -4,4 +4,5 @@ class URL {
   static String get getProductList => '/api/product';
   static String get getCart => '/api/cart';
   static String get addToCart => '/api/cart/item/';
+  static String deleteItemCart(int id) => '/api/cart/item/$id/';
 }

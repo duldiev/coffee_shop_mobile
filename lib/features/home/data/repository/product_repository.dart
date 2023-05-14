@@ -55,4 +55,15 @@ class ProductRepository implements IProductRepository {
       (r) => Right(r),
     );
   }
+
+  @override
+  Future<Either<Failure, Unit>> removeFromCart(int productId) async {
+    final result = await remoteDataSource.removeFromCart(
+      productId,
+    );
+    return result.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
 }

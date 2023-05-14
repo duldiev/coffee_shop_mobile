@@ -14,6 +14,10 @@ abstract class IProductRemoteDataSource {
     int count,
     int productId,
   );
+
+  Future<Either<Failure, Unit>> removeFromCart(
+    int productId,
+  );
 }
 
 @LazySingleton(as: IProductRemoteDataSource)
@@ -60,6 +64,22 @@ class ProductRemoteDataSource extends BaseRepository
         'count': count,
         'product': productId,
       },
+    );
+    return data.then<Either<Failure, Unit>>(
+      (either) => either.fold(
+        (l) => Left<Failure, Unit>(l),
+        (r) => const Right<Failure, Unit>(unit),
+      ),
+    );
+  }
+
+  @override
+  Future<Either<Failure, Unit>> removeFromCart(
+    int productId,
+  ) async {
+    final data = call(
+      RestMethod.delete,
+      URL.deleteItemCart(productId),
     );
     return data.then<Either<Failure, Unit>>(
       (either) => either.fold(

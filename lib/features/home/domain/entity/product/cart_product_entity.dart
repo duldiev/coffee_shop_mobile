@@ -2,11 +2,13 @@
 import 'package:equatable/equatable.dart';
 
 class CartProductEntity extends Equatable {
+  final int id;
   final String name;
   final int price;
   final int amount;
 
   const CartProductEntity({
+    required this.id,
     required this.name,
     required this.price,
     required this.amount,
