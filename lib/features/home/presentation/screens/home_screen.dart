@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:coffee_shop_mobile/common/widgets/app_bar_widget/app_bar_widget.dart';
+import 'package:coffee_shop_mobile/common/widgets/loader/loader.dart';
 import 'package:coffee_shop_mobile/core/helpers/get_image.dart';
 import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/big_text.dart';
@@ -38,9 +39,7 @@ class HomeScreen extends StatelessWidget {
                 builder: (context, state) {
                   return state.when(
                     initial: () => const SizedBox(),
-                    loadInProgress: () => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                    loadInProgress: () => const Loader(),
                     loaded: (list) => ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,

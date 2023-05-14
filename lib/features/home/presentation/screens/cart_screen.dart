@@ -4,6 +4,7 @@ import 'package:coffee_shop_mobile/common/helpers/text_style_helper.dart';
 import 'package:coffee_shop_mobile/common/widgets/app_bar_widget/app_bar_widget.dart';
 import 'package:coffee_shop_mobile/common/widgets/failure_content/failure_content.dart';
 import 'package:coffee_shop_mobile/common/widgets/loader/loader.dart';
+import 'package:coffee_shop_mobile/common/widgets/no_content_message/no_content_message.dart';
 import 'package:coffee_shop_mobile/core/injectoin/injection.dart';
 import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:coffee_shop_mobile/features/auth/presentation/widgets/button_with_icon.dart';
@@ -34,57 +35,56 @@ class CartScreen extends StatelessWidget {
             hideBackButton: false,
             onBack: () => context.router.pop(),
           ),
-          body: SingleChildScrollView(
-            padding: EdgeInsets.all(4.w),
-            child: SizedBox(
-              height: 80.h,
-              child: BlocConsumer<CartBloc, CartState>(
-                listener: (context, state) {},
-                builder: (context, state) {
-                  return state.when(
-                    initial: () => Center(
-                      child: SizedBox(
-                        height: 60.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.remove_shopping_cart_outlined,
-                              size: 20.w,
-                              color: AppColors.secondary,
-                            ),
-                            SizedBox(height: 2.h),
-                            Text(
-                              'No Items',
-                              style: TextStyleHelper.h4.copyWith(
-                                color: AppColors.secondary,
-                              ),
-                            ),
-                          ],
-                        ),
+          body: const MainContent(),
+        ),
+      ),
+    );
+  }
+}
+
+class MainContent extends StatelessWidget {
+  const MainContent({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: () async => context.read<CartBloc>().add(
+            const GetCart(),
+          ),
+      child: SingleChildScrollView(
+        padding: EdgeInsets.all(4.w),
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: SizedBox(
+          height: 80.h,
+          child: BlocConsumer<CartBloc, CartState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return state.when(
+                initial: () => const NoContentMessage(
+                  title: 'No Items',
+                  icon: Icons.remove_shopping_cart_outlined,
+                ),
+                loadInProgress: () => const Loader(),
+                loaded: (list) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TopContent(
+                        list: list.productList,
                       ),
-                    ),
-                    loadInProgress: () => const Loader(),
-                    loaded: (list) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TopContent(
-                            list: list.productList,
-                          ),
-                          BottomContent(
-                            totalPrice: list.totalPrice,
-                          ),
-                        ],
-                      );
-                    },
-                    loadInFailure: (message) => FailureContent(
-                      message: message,
-                    ),
+                      BottomContent(
+                        totalPrice: list.totalPrice,
+                      ),
+                    ],
                   );
                 },
-              ),
-            ),
+                loadInFailure: (message) => FailureContent(
+                  message: message,
+                ),
+              );
+            },
           ),
         ),
       ),
@@ -193,7 +193,7 @@ class BottomContent extends StatelessWidget {
             context.read<CartBloc>().add(
                   const Checkout(),
                 );
-            context.router.replace(const OrderRoute());
+            context.router.push(const OrderRoute());
           },
         ),
       ],

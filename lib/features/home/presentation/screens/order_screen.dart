@@ -5,6 +5,7 @@ import 'package:coffee_shop_mobile/common/helpers/text_style_helper.dart';
 import 'package:coffee_shop_mobile/common/widgets/app_bar_widget/app_bar_widget.dart';
 import 'package:coffee_shop_mobile/common/widgets/failure_content/failure_content.dart';
 import 'package:coffee_shop_mobile/common/widgets/loader/loader.dart';
+import 'package:coffee_shop_mobile/common/widgets/no_content_message/no_content_message.dart';
 import 'package:coffee_shop_mobile/core/injectoin/injection.dart';
 import 'package:coffee_shop_mobile/features/home/presentation/blocs/order_bloc/order_bloc.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +32,17 @@ class OrderScreen extends StatelessWidget {
   }
 }
 
-class OrderList extends StatelessWidget {
+class OrderList extends StatefulWidget {
   const OrderList({
     super.key,
   });
+
+  @override
+  State<OrderList> createState() => _OrderListState();
+}
+
+class _OrderListState extends State<OrderList> {
+  int totalPrice = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +54,23 @@ class OrderList extends StatelessWidget {
         padding: EdgeInsets.all(4.w),
         physics: const AlwaysScrollableScrollPhysics(),
         child: SizedBox(
-          height: 60.h,
-          child: BlocBuilder<OrderBloc, OrderState>(
+          height: 80.h,
+          child: BlocConsumer<OrderBloc, OrderState>(
+            listener: (context, state) {
+              if (state is Loaded && state.orders.isNotEmpty) {
+                int sum = 0;
+                for (var i = 0; i < state.orders.length; i++) {
+                  sum += state.orders[i].price * state.orders[i].count;
+                }
+                setState(() => totalPrice = sum);
+              }
+            },
             builder: (context, state) {
               return state.when(
-                initial: () => const SizedBox(),
+                initial: () => const NoContentMessage(
+                  title: 'No orders',
+                  icon: Icons.filter_list_off_rounded,
+                ),
                 loadInProgress: () => const Loader(),
                 loaded: (list) => Column(
                   children: [
@@ -64,7 +84,7 @@ class OrderList extends StatelessWidget {
                             style: TextStyleHelper.h4,
                           ),
                           Text(
-                            '\$123',
+                            '\$$totalPrice',
                             style: TextStyleHelper.h4.copyWith(
                               color: AppColors.success,
                               fontWeight: FontWeight.w700,

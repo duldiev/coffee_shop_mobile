@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:coffee_shop_mobile/common/widgets/loader/loader.dart';
 import 'package:coffee_shop_mobile/core/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,9 +27,7 @@ class SplashScreen extends StatelessWidget {
         );
       },
       child: const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
+        body: Loader(),
       ),
     );
   }
