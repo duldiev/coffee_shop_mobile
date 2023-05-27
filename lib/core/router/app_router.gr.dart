@@ -13,26 +13,26 @@ import 'dart:async' as _i14;
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:coffee_shop_mobile/core/router/nav_router.dart' as _i1;
 import 'package:coffee_shop_mobile/features/auth/presentation/screens/auth_screen.dart'
-    as _i7;
+    as _i8;
 import 'package:coffee_shop_mobile/features/auth/presentation/screens/sign_up_screen.dart'
-    as _i5;
-import 'package:coffee_shop_mobile/features/auth/presentation/screens/welcome_screen.dart'
     as _i6;
+import 'package:coffee_shop_mobile/features/auth/presentation/screens/welcome_screen.dart'
+    as _i7;
 import 'package:coffee_shop_mobile/features/home/domain/entity/product/product_entity.dart'
     as _i15;
 import 'package:coffee_shop_mobile/features/home/presentation/screens/cart_screen.dart'
     as _i2;
 import 'package:coffee_shop_mobile/features/home/presentation/screens/home_screen.dart'
-    as _i3;
+    as _i4;
 import 'package:coffee_shop_mobile/features/home/presentation/screens/order_screen.dart'
-    as _i11;
+    as _i3;
 import 'package:coffee_shop_mobile/features/notification/presentation/notification_screen.dart'
-    as _i8;
-import 'package:coffee_shop_mobile/features/profile/presentation/product_detail.dart'
     as _i9;
-import 'package:coffee_shop_mobile/features/profile/presentation/profile_screen.dart'
+import 'package:coffee_shop_mobile/features/profile/presentation/product_detail.dart'
     as _i10;
-import 'package:coffee_shop_mobile/features/splash/splash_screen.dart' as _i4;
+import 'package:coffee_shop_mobile/features/profile/presentation/profile_screen.dart'
+    as _i11;
+import 'package:coffee_shop_mobile/features/splash/splash_screen.dart' as _i5;
 import 'package:flutter/material.dart' as _i13;
 
 abstract class $AppRouter extends _i12.RootStackRouter {
@@ -57,47 +57,53 @@ abstract class $AppRouter extends _i12.RootStackRouter {
         ),
       );
     },
+    OrderRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.OrderScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.HomeScreen(),
+        child: const _i4.HomeScreen(),
       );
     },
     SplashRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.SplashScreen(),
+        child: const _i5.SplashScreen(),
       );
     },
     SignUpRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.SignUpScreen(),
+        child: const _i6.SignUpScreen(),
       );
     },
     WelcomeRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.WelcomeScreen(),
+        child: const _i7.WelcomeScreen(),
       );
     },
     AuthRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.AuthScreen(),
+        child: const _i8.AuthScreen(),
       );
     },
     NotificationRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.NotificationScreen(),
+        child: const _i9.NotificationScreen(),
       );
     },
     ProductDetail.name: (routeData) {
       final args = routeData.argsAs<ProductDetailArgs>();
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i9.ProductDetail(
+        child: _i10.ProductDetail(
           key: args.key,
           product: args.product,
         ),
@@ -106,13 +112,7 @@ abstract class $AppRouter extends _i12.RootStackRouter {
     ProfileRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.ProfileScreen(),
-      );
-    },
-    OrderRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i11.OrderScreen(),
+        child: const _i11.ProfileScreen(),
       );
     },
   };
@@ -171,7 +171,21 @@ class CartRouteArgs {
 }
 
 /// generated route for
-/// [_i3.HomeScreen]
+/// [_i3.OrderScreen]
+class OrderRoute extends _i12.PageRouteInfo<void> {
+  const OrderRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          OrderRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.HomeScreen]
 class HomeRoute extends _i12.PageRouteInfo<void> {
   const HomeRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -185,7 +199,7 @@ class HomeRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.SplashScreen]
+/// [_i5.SplashScreen]
 class SplashRoute extends _i12.PageRouteInfo<void> {
   const SplashRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -199,7 +213,7 @@ class SplashRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.SignUpScreen]
+/// [_i6.SignUpScreen]
 class SignUpRoute extends _i12.PageRouteInfo<void> {
   const SignUpRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -213,7 +227,7 @@ class SignUpRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.WelcomeScreen]
+/// [_i7.WelcomeScreen]
 class WelcomeRoute extends _i12.PageRouteInfo<void> {
   const WelcomeRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -227,7 +241,7 @@ class WelcomeRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.AuthScreen]
+/// [_i8.AuthScreen]
 class AuthRoute extends _i12.PageRouteInfo<void> {
   const AuthRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -241,7 +255,7 @@ class AuthRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.NotificationScreen]
+/// [_i9.NotificationScreen]
 class NotificationRoute extends _i12.PageRouteInfo<void> {
   const NotificationRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -255,7 +269,7 @@ class NotificationRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ProductDetail]
+/// [_i10.ProductDetail]
 class ProductDetail extends _i12.PageRouteInfo<ProductDetailArgs> {
   ProductDetail({
     _i13.Key? key,
@@ -293,7 +307,7 @@ class ProductDetailArgs {
 }
 
 /// generated route for
-/// [_i10.ProfileScreen]
+/// [_i11.ProfileScreen]
 class ProfileRoute extends _i12.PageRouteInfo<void> {
   const ProfileRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -302,20 +316,6 @@ class ProfileRoute extends _i12.PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i11.OrderScreen]
-class OrderRoute extends _i12.PageRouteInfo<void> {
-  const OrderRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          OrderRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'OrderRoute';
 
   static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }

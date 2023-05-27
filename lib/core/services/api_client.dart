@@ -1,23 +1,33 @@
 import 'package:coffee_shop_mobile/core/helpers/storage_keys.dart';
 import 'package:coffee_shop_mobile/core/helpers/urls.dart';
+import 'package:coffee_shop_mobile/core/services/network_info.dart';
 import 'package:coffee_shop_mobile/core/services/secure_storage_service.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class ApiClient {
-  ApiClient(this.client, this.storage) {
+  ApiClient(this.client, this.storage, this.info) {
     updateBaseOptions();
     updateLogs();
   }
 
   final Dio client;
   final SecureStorageService storage;
+  final INetworkInfo info;
 
   updateBaseOptions() async {
     final token = await storage.read(StorageKeys.token);
+    var ip = await info.getWifiIP;
+
+    if (ip == null) {
+      ip = URLs.baseUrl;
+    } else {
+      ip = 'http://$ip:8000';
+    }
+
     client.options = BaseOptions(
-      baseUrl: URLs.baseUrl,
+      baseUrl: ip,
       responseType: ResponseType.json,
       headers: {"Authorization": 'Bearer ${token.getOrElse(() => 'NULL')}'},
     );

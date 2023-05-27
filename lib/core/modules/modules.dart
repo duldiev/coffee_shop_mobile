@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:network_info_plus/network_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @module
@@ -24,4 +25,7 @@ abstract class Modules {
   FlutterSecureStorage get storage => FlutterSecureStorage(
         aOptions: _getAndroidOptions(),
       );
+
+  @lazySingleton
+  NetworkInfo get network => NetworkInfo();
 }
