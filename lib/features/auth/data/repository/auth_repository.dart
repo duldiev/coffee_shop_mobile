@@ -49,4 +49,14 @@ class AuthRepository implements IAuthRepository {
   Future<bool> checkAuthenticated() async {
     return await localDataSource.isTokenSaved();
   }
+
+  @override
+  Future<Either<Failure, Unit>> signUp(
+    String email,
+    String username,
+    String password,
+  ) async {
+    final request = await remoteDataSource.signUp(email, username, password);
+    return request.fold((l) => Left(l), (r) => Right(r));
+  }
 }

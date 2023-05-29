@@ -54,7 +54,7 @@ class _OrderListState extends State<OrderList> {
         padding: EdgeInsets.all(4.w),
         physics: const AlwaysScrollableScrollPhysics(),
         child: SizedBox(
-          height: 80.h,
+          height: 100.h,
           child: BlocConsumer<OrderBloc, OrderState>(
             listener: (context, state) {
               if (state is Loaded && state.orders.isNotEmpty) {

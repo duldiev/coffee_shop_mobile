@@ -20,14 +20,18 @@ class SmallText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      overflow: overflow,
-      maxLines: maxLines,
-      style: TextStyle(
-        color: color,
-        fontSize: size == 0 ? 12 : size,
-        height: height,
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        text,
+        overflow: overflow,
+        maxLines: maxLines,
+        style: TextStyle(
+          color: color,
+          fontSize: size == 0 ? 12 : size,
+          height: height,
+        ),
+        textAlign: TextAlign.left,
       ),
     );
   }

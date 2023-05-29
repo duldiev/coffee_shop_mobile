@@ -16,21 +16,22 @@ class ApiClient {
   final SecureStorageService storage;
   final INetworkInfo info;
 
-  updateBaseOptions() async {
-    final token = await storage.read(StorageKeys.token);
-    var ip = await info.getWifiIP;
-
-    if (ip == null) {
-      ip = URLs.baseUrl;
-    } else {
-      ip = 'http://$ip:8000';
-    }
-
+  Future<void> updateBaseOptions([String? token]) async {
+    final storageToken = await storage.read(StorageKeys.token);
+    String? finalToken = token ?? storageToken;
     client.options = BaseOptions(
-      baseUrl: ip,
+      baseUrl: URLs.baseUrl,
       responseType: ResponseType.json,
-      headers: {"Authorization": 'Bearer ${token.getOrElse(() => 'NULL')}'},
+      contentType: 'application/json',
+      headers: finalToken != null
+          ? {
+              "Authorization": 'Bearer $finalToken',
+            }
+          : null,
     );
+    if (finalToken != null) {
+      await storage.write(StorageKeys.token, finalToken);
+    }
   }
 
   updateLogs() {

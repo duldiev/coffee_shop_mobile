@@ -56,7 +56,7 @@ class AuthForm extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: CustomTextField(
-                  hintText: "Email",
+                  hintText: "Username",
                   onChanged: (nextEmail) => context
                       .read<AuthFormBloc>()
                       .add(EmailChanged(email: nextEmail)),

@@ -102,7 +102,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 padding: const EdgeInsets.only(top: 30, left: 100),
                 child: FlexibleSpaceBar(
                   background: Image.file(
-                    File(GetImage.get(widget.product.image)),
+                    File(GetImage.get('2.png')),
                   ),
                 ),
               ),

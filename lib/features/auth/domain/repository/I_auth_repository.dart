@@ -9,6 +9,12 @@ abstract class IAuthRepository {
     String password,
   );
 
+  Future<Either<Failure, Unit>> signUp(
+    String email,
+    String username,
+    String password,
+  );
+
   Future<void> unauthenticate();
 
   Future<bool> checkAuthenticated();

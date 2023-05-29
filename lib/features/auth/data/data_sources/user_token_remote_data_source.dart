@@ -10,6 +10,12 @@ abstract class IUserTokenRemoteDataSource {
     String email,
     String password,
   );
+
+  Future<Either<Failure, Unit>> signUp(
+    String email,
+    String username,
+    String password,
+  );
 }
 
 @LazySingleton(as: IUserTokenRemoteDataSource)
@@ -29,6 +35,26 @@ class UserRemoteDataSource extends BaseRepository
       (either) => either.fold(
         (l) => Left<Failure, AuthResponseModel>(l),
         (r) => Right<Failure, AuthResponseModel>(AuthResponseModel.fromJson(r)),
+      ),
+    );
+  }
+
+  @override
+  Future<Either<Failure, Unit>> signUp(
+    String email,
+    String username,
+    String password,
+  ) async {
+    final result = call(RestMethod.post, URLs.signUp, body: {
+      "username": email,
+      "password": password,
+      "email": email,
+    });
+
+    return result.then<Either<Failure, Unit>>(
+      (either) => either.fold(
+        (l) => Left<Failure, Unit>(l),
+        (r) => const Right<Failure, Unit>(unit),
       ),
     );
   }

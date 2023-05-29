@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:coffee_shop_mobile/features/home/domain/entity/product/product_entity.dart';
 import 'package:coffee_shop_mobile/features/home/domain/repository/i_product_repository.dart';
@@ -28,7 +30,9 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
 
     result.fold(
       (l) => emit(ProductsState.loadInFailure(l.exception.message)),
-      (r) => emit(ProductsState.loaded(r)),
+      (r) {
+        emit(ProductsState.loaded(r));
+      },
     );
   }
 }

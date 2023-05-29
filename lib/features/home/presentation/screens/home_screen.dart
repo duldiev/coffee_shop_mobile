@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Image.file(
-                File(GetImage.get(product.image)),
+                File(GetImage.get('2.png')),
               ),
             ),
             const SizedBox(width: 20),

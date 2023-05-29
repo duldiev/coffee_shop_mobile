@@ -47,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                     height: 20,
                   ),
                   ButtonWithIcon(
-                    onPressed: () {},
+                    onPressed: () => context.router.push(const SignUpRoute()),
                     width: double.maxFinite,
                     height: 50,
                     title: "Sign up",

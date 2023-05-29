@@ -10,8 +10,8 @@ class SecureStorageService {
 
   String message = "DOESN'T EXIST";
 
-  Future<Option<String>> read(String key) async {
-    return optionOf(await storage.read(key: key));
+  Future<String?> read(String key) async {
+    return await storage.read(key: key);
   }
 
   Future<Option<Map<String, String>>> readAll() async {
